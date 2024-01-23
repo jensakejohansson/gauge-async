@@ -6,6 +6,9 @@ namespace netcore.template
 {
     public class StepImplementation
     {
+        /// <summary>
+        /// This step will execute.
+        /// </summary>
         [Step("Test")]
         public void Test()
         {
@@ -17,6 +20,9 @@ namespace netcore.template
             t.Wait();
         }
 
+        /// <summary>
+        /// This step will freeze.
+        /// </summary>
         [Step("Test async")]
         public void TestAsync()
         {
