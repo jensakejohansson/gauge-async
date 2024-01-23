@@ -1,38 +1,35 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Gauge.CSharp.Lib;
 using Gauge.CSharp.Lib.Attribute;
-using Microsoft.Playwright;
-
 
 namespace netcore.template
 {
     public class StepImplementation
     {
-        private HashSet<char> _vowels;
-
-        [Step("Start Chrome in thread")]
-        public async void StartChromeInThread()
+        [Step("Test")]
+        public void Test()
         {
-            var t = Task.Run(async () =>
-            {
-                var playwright = Playwright.CreateAsync().Result;
-                var browser = playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false }).Result;
-                var page = browser.NewPageAsync().Result;
-                await page.GotoAsync("http://www.google.com/");
-            });
+            var t = Task.Run(() =>
+           {
+               int result = DoSomethingAsync().Result;
+               Console.WriteLine("Completed");
+           });
             t.Wait();
         }
 
-        [Step("Start Chrome")]
-        public void StartChrome()
+        [Step("Test async")]
+        public void TestAsync()
         {
-            var playwright = Playwright.CreateAsync().Result;
-            var browser = playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false }).Result;
-            var page = browser.NewPageAsync().Result;
-            page.GotoAsync("http://www.google.com/");
+            int result = DoSomethingAsync().Result;
+            Console.WriteLine("Completed");
+        }
 
+        public async Task<int> DoSomethingAsync()
+        {
+            Console.WriteLine("Doing something...");
+            await Task.Delay(2000); // Waits asynchronously for 2 seconds
+            Console.WriteLine("Done something.");
+            return 42;
         }
     }
 }
