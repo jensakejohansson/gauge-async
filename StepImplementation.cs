@@ -27,7 +27,7 @@ namespace netcore.template
         public async Task<int> DoSomethingAsync()
         {
             Console.WriteLine("Doing something...");
-            await Task.Delay(2000); // Waits asynchronously for 2 seconds
+            await Task.Delay(2000);
             Console.WriteLine("Done something.");
             return 42;
         }
