@@ -2,6 +2,6 @@
 
 ## Test Async
 // Works...
-* Test
+* Add to store
 // Freezes for ever...
-* Test async
+* Get from store

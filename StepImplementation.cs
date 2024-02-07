@@ -7,20 +7,14 @@ namespace netcore.template
 {
     public class StepImplementation
     {
-        /// <summary>
-        /// This step will execute.
-        /// </summary>
-        [Step("Test")]
-        public void Test()
+        [Step("Add to store")]
+        public void AddToStore()
         {
            ScenarioDataStore.Add("test", "test_value");
         }
 
-        /// <summary>
-        /// This step will freeze.
-        /// </summary>
-        [Step("Test async")]
-        public void TestAsync()
+        [Step("Get from store")]
+        public void GetFromStore()
         {
             var value = ScenarioDataStore.Get("test");
             value.Should().NotBeNull();
