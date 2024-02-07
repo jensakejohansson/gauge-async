@@ -1,6 +1,7 @@
 using System;
-using System.Threading.Tasks;
+using Gauge.CSharp.Lib;
 using Gauge.CSharp.Lib.Attribute;
+using FluentAssertions;
 
 namespace netcore.template
 {
@@ -12,12 +13,7 @@ namespace netcore.template
         [Step("Test")]
         public void Test()
         {
-            var t = Task.Run(() =>
-           {
-               int result = DoSomethingAsync().Result;
-               Console.WriteLine("Completed");
-           });
-            t.Wait();
+           ScenarioDataStore.Add("test", "test_value");
         }
 
         /// <summary>
@@ -26,16 +22,8 @@ namespace netcore.template
         [Step("Test async")]
         public void TestAsync()
         {
-            int result = DoSomethingAsync().Result;
-            Console.WriteLine("Completed");
-        }
-
-        public async Task<int> DoSomethingAsync()
-        {
-            Console.WriteLine("Doing something...");
-            await Task.Delay(2000);
-            Console.WriteLine("Done something.");
-            return 42;
+            var value = ScenarioDataStore.Get("test");
+            value.Should().NotBeNull();
         }
     }
 }
