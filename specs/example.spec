@@ -1,7 +1,7 @@
 # Specification Heading
 
-## Test Async
-// Works...
+## Test DataStore
+// Add to store...
 * Add to store
-// Freezes for ever...
+// Get from store... (fails sometimes - try to run it many times if it works the first time).
 * Get from store
